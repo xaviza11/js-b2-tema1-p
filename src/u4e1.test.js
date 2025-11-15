@@ -33,9 +33,9 @@ describe('Testing promises: countDown', () => {
         let c = STEPS;
 
         const stepFunc = (step) => {
-            c--;
             expect(c).toBe(step);
-        };
+            c--; 
+        };  //! El test estaba errado, puesto que al restar 1 a c entonces c != step pero se valida después de c-- cuando se ha de validar antes
 
         const res = await countDown(STEPS, stepFunc);
 

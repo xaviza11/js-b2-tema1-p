@@ -1,9 +1,35 @@
-// T1. Uso avanzado de funciones
-// U4. Asincronía y await
-// Enunciado disponible en u4e1.md / Enunciat disponible a u4e1.md
+async function countDown(amount, stepCallback) {
 
-//Escribe aquí tu solución / escriviu aquí la vostra solució:
+    // Validación del callback
+    if (typeof stepCallback !== "function") {
+        throw new Error("ERROR. Es obligatorio el paso de un callback como segundo parámetro.");
+    }
 
+    return new Promise((resolve, reject) => {
+
+        // Validación de cantidad
+        if (amount <= 0) {
+            reject(new Error("ERROR. La cantidad ha de ser positiva y mayor que 0."));
+            return;
+        }
+
+        // Función recursiva para ejecutar cada paso
+        const step = (current) => {
+            stepCallback(current); // llamamos al callback con el valor actual
+
+            if (current === 1) {
+                // último paso, resolvemos
+                resolve(true);
+            } else {
+                // llamamos recursivamente al siguiente paso después de 100ms
+                setTimeout(() => step(current - 1), 100);
+            }
+        };
+
+        // Iniciamos la cuenta atrás
+        step(amount);
+    });
+}
 
 /**
 * TEST

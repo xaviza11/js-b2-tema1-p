@@ -1,3 +1,5 @@
+import basicEncrypt from "./encrypt";
+
 const GREET_TYPES = {
     HI: 'hi',
     BYE: 'bye'
@@ -19,3 +21,5 @@ function encryptedGreeting(name, type) {
 
     return basicEncrypt('Bye ' + name + '!');
 }
+
+export { GREET_TYPES, sayBye, sayHi }

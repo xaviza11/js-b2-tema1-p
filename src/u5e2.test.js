@@ -19,16 +19,16 @@ describe('Closures testing', () => {
     test('Initialization', () => {
 
         expect(myList.init([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toMatch(/ERROR_2/);
-        expect(myList.initialized()).toBe(false);
+        expect(myList.initialized()).toBe(false); //! Esto no devería devolver error ???
 
-        expect(myList.init([1, 2, 'a', 4, 5, 6])).toMatch(/ERROR_3/);
+        expect(myList.init([1, 2, 'a', 4, 5, 6])).toMatch("ERROR. Todos los elementos han de ser números.");
         expect(myList.initialized()).toBe(false);
 
         expect(myList.init([1, 2, 3])).toBe(true);
         expect(myList.initialized()).toBe(true);
         expect(JSON.stringify(myList.items())).toBe(JSON.stringify([1, 2, 3]));
 
-        expect(myList.init([1, 2, 3, 4, 5, 6, 7])).toMatch(/ERROR_1/);
+        expect(myList.init([1, 2, 3, 4, 5, 6, 7])).toMatch("ERROR. Ya inicializado.");
     });
 
     test('Length control', () => {
@@ -37,7 +37,7 @@ describe('Closures testing', () => {
         expect(myList.add(4)).toBe(true);
         expect(myList.length()).toBe(4);
 
-        expect(myList.add([5, 'a', 7])).toMatch(/ERROR_3/);
+        expect(myList.add([5, 'a', 7])).toMatch("ERROR. Todos los elementos han de ser números.");
         expect(myList.length()).toBe(4);
 
         expect(myList.add([5, 6, 7])).toBe(true);
